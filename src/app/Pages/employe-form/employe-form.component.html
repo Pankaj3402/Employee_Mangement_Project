@@ -1,0 +1,31 @@
+<div class="employee-form-page">
+	<div class="employee-form-header">
+		<h2>Add / Edit Employee</h2>
+	</div>
+	<form (ngSubmit)="saveEmployee()" class="employee-form-card">
+		<div class="input-group">
+			<label for="name">Name</label>
+			<input id="name" [(ngModel)]="employee.name" name="name" required />
+		</div>
+		<div class="input-group">
+			<label for="email">Email</label>
+			<input id="email" [(ngModel)]="employee.email" name="email" required type="email" />
+		</div>
+		<div class="input-group">
+			<label for="department">Department</label>
+			<input id="department" [(ngModel)]="employee.department" name="department" required />
+		</div>
+		<div class="input-group">
+			<label for="designation">Designation</label>
+			<input id="designation" [(ngModel)]="employee.designation" name="designation" required />
+		</div>
+		<div class="input-group">
+			<label for="salary">Salary</label>
+			<input id="salary" [(ngModel)]="employee.salary" name="salary" type="number" />
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn-submit">Save</button>
+			<button type="button" class="btn-cancel" (click)="resetForm()">Reset</button>
+		</div>
+	</form>
+</div>

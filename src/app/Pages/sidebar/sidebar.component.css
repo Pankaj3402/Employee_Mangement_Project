@@ -1,0 +1,75 @@
+.nav-dashboard { color: #2196f3; background: #e3f2fd; }
+.nav-employees { color: #43a047; background: #e8f5e9; }
+.nav-departments { color: #ff9800; background: #fff3e0; }
+.nav-designations { color: #ab47bc; background: #f3e5f5; }
+.nav-logout { color: #e53935; background: #ffebee; }
+
+.sidebar.closed {
+  width: 56px;
+  box-shadow: 2px 0 16px rgba(0,188,212,0.10);
+}
+.toggle-btn {
+  background: linear-gradient(90deg, #00bcd4 0%, #232526 100%);
+  border: none;
+  color: #fff;
+  width: 100%;
+  padding: 14px 0 10px 0;
+  cursor: pointer;
+  outline: none;
+  font-size: 2rem;
+  transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,188,212,0.12);
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+.toggle-btn span {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+}
+.sidebar.closed .toggle-btn span {
+  transform: rotate(180deg) scale(1.2);
+  color: #00bcd4;
+}
+.toggle-btn:hover {
+  background: linear-gradient(90deg, #232526 0%, #00bcd4 100%);
+  color: #232526;
+  box-shadow: 0 4px 24px rgba(0,188,212,0.18);
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  font-size: 1.13rem;
+  border-left: 4px solid transparent;
+  transition: background 0.2s, border-color 0.2s, padding 0.3s, color 0.2s, box-shadow 0.2s;
+  position: relative;
+  letter-spacing: 0.5px;
+  border-radius: 14px;
+  margin: 12px 10px;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(0,188,212,0.08);
+  gap: 10px;
+  min-height: 48px;
+}
+nav ul li a:hover {
+  background: linear-gradient(90deg, #00bcd4 0%, #232526 100%);
+  border-left: 4px solid #fff;
+  color: #232526;
+  padding-left: 40px;
+  box-shadow: 0 6px 24px rgba(0,188,212,0.22);
+  text-shadow: 0 1px 2px #fff2;
+}
+nav ul li a:hover .nav-icon {
+  background: #00bcd4;
+  color: #fff;
+  transform: scale(1.18) rotate(-8deg);
+  box-shadow: 0 4px 16px rgba(0,188,212,0.18);
+}

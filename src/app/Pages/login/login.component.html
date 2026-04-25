@@ -1,0 +1,52 @@
+<div class="login-page">
+  <div class="login-card">
+    
+    <div class="login-brand">
+      <span>Employee</span>
+      <strong>Manager</strong>
+    </div>
+
+    <p class="login-subtitle">
+      Access your employee dashboard with secure login.
+    </p>
+
+    <!-- ✅ Add (ngSubmit) -->
+    <form class="login-form" (ngSubmit)="onLogin()" #loginForm="ngForm" autocomplete="off">
+      
+      <div class="input-group">
+        <label>Email</label>
+        <!-- ✅ name is REQUIRED for ngModel -->
+        <input 
+          type="email"
+          name="email"
+          [(ngModel)]="loginObj.email"
+          placeholder="Enter Email"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <label>Phone No</label>
+        <input 
+          type="password"
+          name="phoneNo"
+          [(ngModel)]="loginObj.phoneNo"
+          placeholder="Enter Phone Number"
+          required
+        />
+      </div>
+
+      <!-- ✅ Use submit instead of button -->
+      <button type="submit" class="btn-submit">
+        Sign In
+      </button>
+
+    </form>
+
+    <div class="login-meta">
+      <span>Forgot password?</span>
+      <span>Need help? Contact support.</span>
+    </div>
+
+  </div>
+</div>

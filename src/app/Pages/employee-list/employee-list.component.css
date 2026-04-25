@@ -1,0 +1,86 @@
+* {
+	box-sizing: border-box;
+}
+
+.employee-list-page {
+	max-width: 900px;
+	margin: 2rem auto;
+	background: rgba(15, 23, 42, 0.9);
+	color: #f8fafc;
+	border-radius: 18px;
+	box-shadow: 0 8px 32px rgba(15, 23, 42, 0.25);
+	padding: 2rem;
+}
+
+.employee-list-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.btn-add {
+	background: linear-gradient(135deg, #60a5fa, #38bdf8);
+	color: #0f172a;
+	border: none;
+	border-radius: 14px;
+	padding: 0.7rem 1.3rem;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: none;
+	transition: background 0.2s;
+}
+.btn-add:hover {
+	background: linear-gradient(135deg, #38bdf8, #60a5fa);
+}
+
+.employee-list-card {
+	background: rgba(30, 41, 59, 0.85);
+	border-radius: 14px;
+	padding: 1.5rem;
+	box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+}
+.employee-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 0.5rem;
+}
+.employee-table th, .employee-table td {
+	padding: 0.7rem 0.5rem;
+	text-align: left;
+}
+.employee-table th {
+	color: #60a5fa;
+	border-bottom: 1px solid #334155;
+}
+.employee-table td {
+	border-bottom: 1px solid #1e293b;
+}
+.btn-edit, .btn-delete {
+	border: none;
+	border-radius: 8px;
+	padding: 0.4rem 1rem;
+	margin-right: 0.5rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.btn-edit {
+	background: #38bdf8;
+	color: #0f172a;
+}
+.btn-edit:hover {
+	background: #0ea5e9;
+}
+.btn-delete {
+	background: #f87171;
+	color: #fff;
+}
+.btn-delete:hover {
+	background: #ef4444;
+}
+.empty-msg {
+	color: #94a3b8;
+	text-align: center;
+	margin-top: 1rem;
+}

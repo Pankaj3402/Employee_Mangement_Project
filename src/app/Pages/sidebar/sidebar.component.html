@@ -1,0 +1,15 @@
+<div class="sidebar" [class.closed]="!isOpen">
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <span *ngIf="isOpen">&#10094;</span>
+    <span *ngIf="!isOpen">&#10095;</span>
+  </button>
+  <nav *ngIf="isOpen">
+    <ul>
+      <li><a routerLink="/dashboard"><span class="nav-icon nav-dashboard">&#127968;</span> Dashboard</a></li>
+      <li><a routerLink="/employee-list"><span class="nav-icon nav-employees">&#128100;</span> Employees</a></li>
+      <li><a routerLink="/department"><span class="nav-icon nav-departments">&#128736;</span> Departments</a></li>
+      <li><a routerLink="/designation"><span class="nav-icon nav-designations">&#128221;</span> Designations</a></li>
+      <li><a routerLink="/login"><span class="nav-icon nav-logout">&#128682;</span> Logout</a></li>
+    </ul>
+  </nav>
+</div>
