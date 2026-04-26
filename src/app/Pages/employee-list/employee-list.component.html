@@ -1,34 +1,40 @@
 <div class="employee-list-page">
-	<div class="employee-list-header">
-		<h2>Employee List</h2>
-		<a routerLink="/employee-form" class="btn-add">+ Add Employee</a>
-	</div>
-	<div class="employee-list-card">
-		<table class="employee-table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Department</th>
-					<th>Designation</th>
-					<th>Salary</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let e of employees; let i = index">
-					<td>{{ e.name }}</td>
-					<td>{{ e.email }}</td>
-					<td>{{ e.department }}</td>
-					<td>{{ e.designation }}</td>
-					<td>{{ e.salary | currency:'INR' }}</td>
-					<td>
-						<button class="btn-edit" (click)="editEmployee(i)">Edit</button>
-						<button class="btn-delete" (click)="deleteEmployee(i)">Delete</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div *ngIf="employees.length === 0" class="empty-msg">No employees found.</div>
-	</div>
+  <div class="employee-list-header">
+    <h2>Employee List</h2>
+    <a routerLink="/employee-form" class="btn-add">+ Add Employee</a>
+  </div>
+
+  <div class="employee-list-card">
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>City</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let e of employees">
+  <td>{{ e.empName }}</td>
+  <td>{{ e.email }}</td>
+  <td>{{ e.phoneNo }}</td>
+  <td>{{ e.city }}</td>
+  <td>{{ e.role }}</td>
+
+  <td>
+    <button class="btn-edit" (click)="editEmployee(e)">Edit</button>
+    <button class="btn-delete" (click)="deleteEmployee(e.employeeId)">Delete</button>
+  </td>
+</tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="employees.length === 0" class="empty-msg">
+      No employees found.
+    </div>
+  </div>
 </div>

@@ -1,45 +1,81 @@
 <div class="designation-page">
-	<div class="designation-header">
-		<h2>Designations</h2>
-		<button class="btn-add" (click)="openAddForm()">+ Add Designation</button>
-	</div>
-	<div *ngIf="showForm" class="designation-form-card">
-		<form (ngSubmit)="saveDesignation()" class="designation-form">
-			<div class="input-group">
-				<label for="name">Name</label>
-				<input id="name" [(ngModel)]="designation.name" name="name" required />
-			</div>
-			<div class="input-group">
-				<label for="desc">Description</label>
-				<input id="desc" [(ngModel)]="designation.description" name="description" />
-			</div>
-			<div class="form-actions">
-				<button type="submit" class="btn-submit">{{ editIndex === -1 ? 'Add' : 'Update' }}</button>
-				<button type="button" class="btn-cancel" (click)="closeForm()">Cancel</button>
-			</div>
-		</form>
-	</div>
-	<div class="designation-list-card">
-		<table class="designation-table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let d of designations; let i = index">
-					<td>{{ d.name }}</td>
-					<td>{{ d.description }}</td>
-					<td>
-						<button class="btn-edit" (click)="editDesignation(i)">Edit</button>
-						<button class="btn-delete" (click)="deleteDesignation(i)">Delete</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div *ngIf="designations.length === 0" class="empty-msg">No designations found.</div>
-	</div>
+
+  <!-- HEADER -->
+  <div class="designation-header">
+    <h2>Designations</h2>
+    <button class="btn-add" (click)="openAddForm()">+ Add Designation</button>
+  </div>
+
+  <!-- FORM -->
+  <div *ngIf="showForm" class="designation-form-card">
+    <form (ngSubmit)="saveDesignation()" class="designation-form">
+
+      <div class="input-group">
+        <label>Name</label>
+        <input
+          [(ngModel)]="designation.designationName"
+          name="designationName"
+          required />
+      </div>
+
+      <div class="input-group">
+        <label>Department Id</label>
+        <input
+          type="number"
+          [(ngModel)]="designation.departmentId"
+          name="departmentId" />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">
+          {{ isEditMode ? 'Update' : 'Add' }}
+        </button>
+
+        <button type="button" class="btn-cancel" (click)="closeForm()">
+          Cancel
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- TABLE -->
+  <div class="designation-list-card">
+    <table class="designation-table">
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Department Id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let d of designations">
+          <td>{{ d.designationId }}</td>
+          <td>{{ d.designationName }}</td>
+          <td>{{ d.departmentId }}</td>
+
+          <td>
+            <button class="btn-edit" (click)="editDesignation(d)">
+              Edit
+            </button>
+
+            <button class="btn-delete" (click)="deleteDesignation(d.designationId)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <!-- EMPTY MESSAGE -->
+    <div *ngIf="designations.length === 0" class="empty-msg">
+      No designations found.
+    </div>
+  </div>
+
 </div>
-<p>designation works!</p>

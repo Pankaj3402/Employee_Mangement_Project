@@ -1,130 +1,117 @@
-* {
-	box-sizing: border-box;
+.dept-container {
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
 }
 
-.department-page {
-	max-width: 700px;
-	margin: 2rem auto;
-	background: rgba(15, 23, 42, 0.9);
-	color: #f8fafc;
-	border-radius: 18px;
-	box-shadow: 0 8px 32px rgba(15, 23, 42, 0.25);
-	padding: 2rem;
+/* CARD */
+.dept-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.department-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1.5rem;
+/* FORM */
+.dept-form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.btn-add {
-	background: linear-gradient(135deg, #60a5fa, #38bdf8);
-	color: #0f172a;
-	border: none;
-	border-radius: 14px;
-	padding: 0.7rem 1.3rem;
-	font-weight: 600;
-	cursor: pointer;
-	transition: background 0.2s;
-}
-.btn-add:hover {
-	background: linear-gradient(135deg, #38bdf8, #60a5fa);
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.department-form-card {
-	background: rgba(30, 41, 59, 0.95);
-	border-radius: 14px;
-	padding: 1.5rem;
-	margin-bottom: 1.5rem;
-	box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+.form-group input[type="text"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
-.department-form {
-	display: grid;
-	gap: 1rem;
+
+.checkbox {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
 }
-.input-group label {
-	color: #94a3b8;
-	margin-bottom: 0.2rem;
+
+.checkbox input {
+  margin-right: 5px;
 }
-.input-group input {
-	padding: 0.8rem;
-	border-radius: 10px;
-	border: 1px solid rgba(148, 163, 184, 0.2);
-	background: rgba(15, 23, 42, 0.6);
-	color: #e2e8f0;
-	width: 100%;
-}
+
+/* BUTTONS */
 .form-actions {
-	display: flex;
-	gap: 1rem;
-	margin-top: 0.5rem;
+  margin-top: 20px;
 }
-.btn-submit {
-	background: linear-gradient(135deg, #60a5fa, #38bdf8);
-	color: #0f172a;
-	border: none;
-	border-radius: 10px;
-	padding: 0.7rem 1.5rem;
-	font-weight: 700;
-	cursor: pointer;
+
+.btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
 }
-.btn-cancel {
-	background: #64748b;
-	color: #fff;
-	border: none;
-	border-radius: 10px;
-	padding: 0.7rem 1.5rem;
-	cursor: pointer;
+
+.btn.save {
+  background-color: #0d6efd;
+  color: white;
 }
-.department-list-card {
-	background: rgba(30, 41, 59, 0.85);
-	border-radius: 14px;
-	padding: 1.5rem;
-	box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+
+.btn.reset {
+  background-color: gray;
+  color: white;
 }
-.department-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-bottom: 0.5rem;
+
+.btn.edit {
+  background-color: orange;
+  color: white;
 }
-.department-table th, .department-table td {
-	padding: 0.7rem 0.5rem;
-	text-align: left;
+
+.btn.delete {
+  background-color: red;
+  color: white;
 }
-.department-table th {
-	color: #60a5fa;
-	border-bottom: 1px solid #334155;
+
+/* TABLE */
+.dept-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
-.department-table td {
-	border-bottom: 1px solid #1e293b;
+
+.dept-table th,
+.dept-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
 }
-.btn-edit, .btn-delete {
-	border: none;
-	border-radius: 8px;
-	padding: 0.4rem 1rem;
-	margin-right: 0.5rem;
-	font-weight: 600;
-	cursor: pointer;
-	transition: background 0.2s;
+
+.dept-table th {
+  background-color: #0d6efd;
+  color: white;
 }
-.btn-edit {
-	background: #38bdf8;
-	color: #0f172a;
+
+/* BADGES */
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: white;
 }
-.btn-edit:hover {
-	background: #0ea5e9;
+
+.active {
+  background-color: green;
 }
-.btn-delete {
-	background: #f87171;
-	color: #fff;
+
+.inactive {
+  background-color: red;
 }
-.btn-delete:hover {
-	background: #ef4444;
-}
-.empty-msg {
-	color: #94a3b8;
-	text-align: center;
-	margin-top: 1rem;
+
+/* EMPTY */
+.empty {
+  text-align: center;
+  margin-top: 10px;
+  color: gray;
 }

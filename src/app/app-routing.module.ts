@@ -9,7 +9,8 @@ import { HeaderComponent } from './Pages/header/header.component';
 import { LoginComponent } from './Pages/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'department', component: DepartmentComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'employee-list', component: EmployeeListComponent },
   { path: 'header', component: HeaderComponent },
   { path: '**', redirectTo: 'login' }
+  
 ];
 
 @NgModule({

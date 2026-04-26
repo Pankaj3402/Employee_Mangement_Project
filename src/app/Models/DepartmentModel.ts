@@ -5,7 +5,7 @@ export class DepartmentModel{
 
     constructor(){
         this.departmentId=0;
-        this.departmentName="";
+        this.departmentName='';
         this.isActive=false;
     }
 }

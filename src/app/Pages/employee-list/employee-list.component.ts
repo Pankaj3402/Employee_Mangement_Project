@@ -1,29 +1,52 @@
-import { Component } from '@angular/core';
-
-interface Employee {
-  name: string;
-  email: string;
-  department: string;
-  designation: string;
-  salary: number | null;
-}
+import { Component, OnInit, inject } from '@angular/core';
+import { MasterService } from '../../Services/master.service';
+import { Router } from '@angular/router';
+import { EmployeeModel } from '../../Models/EmployeeModel';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent {
-  employees: Employee[] = [
-    { name: 'Amit Sharma', email: 'amit@company.com', department: 'HR', designation: 'Manager', salary: 50000 },
-    { name: 'Priya Singh', email: 'priya@company.com', department: 'IT', designation: 'Developer', salary: 60000 }
-  ];
+export class EmployeeListComponent implements OnInit {
 
-  editEmployee(index: number) {
-    alert('Edit employee feature (demo only).');
+  employees: EmployeeModel[] = [];
+
+  masterService = inject(MasterService);
+  router = inject(Router);
+
+  ngOnInit(): void {
+    this.loadEmployees();
   }
 
-  deleteEmployee(index: number) {
-    this.employees.splice(index, 1);
+  // GET
+  loadEmployees() {
+    this.masterService.GetAllEmployees().subscribe({
+      next: (res: EmployeeModel[]) => {
+        this.employees = res;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  // DELETE
+  deleteEmployee(id: number) {
+    if (!confirm('Are you sure to delete?')) return;
+
+    this.masterService.DeleteEmployee(id).subscribe({
+      next: () => {
+        alert('Deleted Successfully');
+        this.loadEmployees();
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Delete failed');
+      }
+    });
+  }
+
+  // EDIT
+  editEmployee(emp: EmployeeModel) {
+    this.router.navigate(['/employee-form', emp.employeeId]);
   }
 }

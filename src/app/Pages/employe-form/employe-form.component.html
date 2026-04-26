@@ -1,31 +1,59 @@
 <div class="employee-form-page">
-	<div class="employee-form-header">
-		<h2>Add / Edit Employee</h2>
-	</div>
-	<form (ngSubmit)="saveEmployee()" class="employee-form-card">
-		<div class="input-group">
-			<label for="name">Name</label>
-			<input id="name" [(ngModel)]="employee.name" name="name" required />
-		</div>
-		<div class="input-group">
-			<label for="email">Email</label>
-			<input id="email" [(ngModel)]="employee.email" name="email" required type="email" />
-		</div>
-		<div class="input-group">
-			<label for="department">Department</label>
-			<input id="department" [(ngModel)]="employee.department" name="department" required />
-		</div>
-		<div class="input-group">
-			<label for="designation">Designation</label>
-			<input id="designation" [(ngModel)]="employee.designation" name="designation" required />
-		</div>
-		<div class="input-group">
-			<label for="salary">Salary</label>
-			<input id="salary" [(ngModel)]="employee.salary" name="salary" type="number" />
-		</div>
-		<div class="form-actions">
-			<button type="submit" class="btn-submit">Save</button>
-			<button type="button" class="btn-cancel" (click)="resetForm()">Reset</button>
-		</div>
-	</form>
+  <div class="employee-form-header">
+    <h2>Add / Edit Employee</h2>
+  </div>
+
+  <form (ngSubmit)="saveEmployee()" class="employee-form-card">
+
+    <div class="input-group">
+      <label>Name</label>
+      <input [(ngModel)]="employee.empName" name="empName" required />
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input [(ngModel)]="employee.email" name="email" required type="email" />
+    </div>
+
+    <div class="input-group">
+      <label>Phone No</label>
+      <input [(ngModel)]="employee.phoneNo" name="phoneNo" required />
+    </div>
+
+    <div class="input-group">
+      <label>City</label>
+      <input [(ngModel)]="employee.city" name="city" />
+    </div>
+
+    <div class="input-group">
+      <label>State</label>
+      <input [(ngModel)]="employee.state" name="state" />
+    </div>
+
+    <div class="input-group">
+      <label>Pincode</label>
+      <input [(ngModel)]="employee.pincode" name="pincode" />
+    </div>
+
+    <div class="input-group">
+      <label>Address</label>
+      <input [(ngModel)]="employee.address" name="address" />
+    </div>
+
+    <div class="input-group">
+      <label>Designation Id</label>
+      <input type="number" [(ngModel)]="employee.designationId" name="designationId" />
+    </div>
+
+    <div class="input-group">
+      <label>Role</label>
+      <input [(ngModel)]="employee.role" name="role" />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-submit">Save</button>
+      <button type="button" class="btn-cancel" (click)="resetForm()">Reset</button>
+    </div>
+
+  </form>
 </div>

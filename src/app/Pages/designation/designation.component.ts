@@ -1,58 +1,100 @@
-import { Component } from '@angular/core';
-
-interface Designation {
-  name: string;
-  description: string;
-}
+import { Component, OnInit, inject } from '@angular/core';
+import { MasterService } from '../../Services/master.service';
 
 @Component({
   selector: 'app-designation',
   templateUrl: './designation.component.html',
   styleUrls: ['./designation.component.css']
 })
-export class DesignationComponent {
+export class DesignationComponent implements OnInit {
 
-  designations: Designation[] = [];
+  masterService = inject(MasterService);
 
-  designation: Designation = {
-    name: '',
-    description: ''
+  designations: any[] = [];
+
+  designation: any = {
+    designationId: 0,
+    designationName: '',
+    departmentId: 0
   };
 
   showForm = false;
-  editIndex = -1;
+  isEditMode = false;
 
+  ngOnInit(): void {
+    this.loadDesignations();
+  }
+
+  // ✅ LOAD DATA FROM API
+  loadDesignations() {
+    this.masterService.GetAllDesignations().subscribe({
+      next: (res) => {
+        this.designations = res;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  // ✅ OPEN FORM
   openAddForm() {
-    this.designation = { name: '', description: '' };
-    this.editIndex = -1;
+    this.designation = {
+      designationId: 0,
+      designationName: '',
+      departmentId: 0
+    };
+    this.isEditMode = false;
     this.showForm = true;
   }
 
+  // ✅ CLOSE FORM
   closeForm() {
     this.showForm = false;
-    this.designation = { name: '', description: '' };
-    this.editIndex = -1;
   }
 
+  // ✅ SAVE (ADD / UPDATE)
   saveDesignation() {
-    if (!this.designation.name) return;
 
-    if (this.editIndex === -1) {
-      this.designations.push({ ...this.designation });
+    if (!this.designation.designationName) return;
+
+    if (this.isEditMode) {
+      // UPDATE
+      this.masterService.UpdateDesignation(this.designation.designationId, this.designation)
+        .subscribe({
+          next: () => {
+            alert('Updated Successfully');
+            this.loadDesignations();
+            this.closeForm();
+          }
+        });
     } else {
-      this.designations[this.editIndex] = { ...this.designation };
+      // CREATE
+      this.masterService.CreateDesignation(this.designation)
+        .subscribe({
+          next: () => {
+            alert('Added Successfully');
+            this.loadDesignations();
+            this.closeForm();
+          }
+        });
     }
-
-    this.closeForm();
   }
 
-  editDesignation(index: number) {
-    this.designation = { ...this.designations[index] };
-    this.editIndex = index;
+  // ✅ EDIT
+  editDesignation(item: any) {
+    this.designation = { ...item };
+    this.isEditMode = true;
     this.showForm = true;
   }
 
-  deleteDesignation(index: number) {
-    this.designations.splice(index, 1);
+  // ✅ DELETE
+  deleteDesignation(id: number) {
+    if (!confirm('Are you sure to delete?')) return;
+
+    this.masterService.DeleteDesignation(id).subscribe({
+      next: () => {
+        alert('Deleted Successfully');
+        this.loadDesignations();
+      }
+    });
   }
 }

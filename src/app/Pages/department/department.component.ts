@@ -1,11 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DepartmentModel } from '../../Models/DepartmentModel';
 import { MasterService } from '../../Services/master.service';
-
-interface Department {
-  name: string;
-  description: string;
-}
 
 @Component({
   selector: 'app-department',
@@ -14,61 +9,72 @@ interface Department {
 })
 export class DepartmentComponent implements OnInit {
 
-newDeptObj: DepartmentModel = new DepartmentModel();
+  newDeptObj: DepartmentModel = new DepartmentModel();
+  deptList: DepartmentModel[] = [];
+  isEditMode: boolean = false;
 
-masterService = inject(MasterService)
-deptList: DepartmentModel[]=[];
-ngOnInit(): void {
-  this.GetAllDepartments();
-}
-onSaveDept(){
+  masterService = inject(MasterService);
 
-}
-
-GetAllDepartments(){
-  this.masterService.getAllDept().subscribe({
-    next: (result:any)=>{
-
-    }
-  })
-}
-
-
-
-  departments: Department[] = [];
-  department: Department = { name: '', description: '' };
-  showForm = false;
-  editIndex = -1;
-
-  openAddForm() {
-    this.department = { name: '', description: '' };
-    this.editIndex = -1;
-    this.showForm = true;
+  ngOnInit(): void {
+    this.getAllDepartments();
   }
 
-  closeForm() {
-    this.showForm = false;
-    this.department = { name: '', description: '' };
-    this.editIndex = -1;
-  }
+  // SAVE / UPDATE
+  onSaveDept() {
 
-  saveDepartment() {
-    if (!this.department.name) return;
-    if (this.editIndex === -1) {
-      this.departments.push({ ...this.department });
+    if (this.isEditMode) {
+      this.masterService.UpdateDepartment(this.newDeptObj).subscribe({
+        next: () => {
+          alert('Updated Successfully');
+          this.afterSave();
+        },
+        error: () => alert('Update Failed')
+      });
     } else {
-      this.departments[this.editIndex] = { ...this.department };
+      this.masterService.AddDepartment(this.newDeptObj).subscribe({
+        next: () => {
+          alert('Saved Successfully');
+          this.afterSave();
+        },
+        error: () => alert('Save Failed')
+      });
     }
-    this.closeForm();
   }
 
-  editDepartment(index: number) {
-    this.department = { ...this.departments[index] };
-    this.editIndex = index;
-    this.showForm = true;
+  // GET
+  getAllDepartments() {
+    this.masterService.GetAllDepartments().subscribe({
+      next: (res) => {
+        this.deptList = res;
+      }
+    });
   }
 
-  deleteDepartment(index: number) {
-    this.departments.splice(index, 1);
+  // EDIT
+  onEdit(item: DepartmentModel) {
+    this.newDeptObj = { ...item };
+    this.isEditMode = true;
+  }
+
+  // DELETE
+  onDelete(id: number) {
+    if (confirm('Are you sure to delete?')) {
+      this.masterService.DeleteDepartment(id).subscribe({
+        next: () => {
+          alert('Deleted Successfully');
+          this.getAllDepartments();
+        }
+      });
+    }
+  }
+
+  afterSave() {
+    this.resetForm();
+    this.getAllDepartments();
+  }
+
+  resetForm() {
+    this.newDeptObj = new DepartmentModel();
+    this.isEditMode = false;
   }
 }
